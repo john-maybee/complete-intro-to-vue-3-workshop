@@ -8,7 +8,10 @@
   </head>
   <body>
     <h1>Playground</h1>
-    <div id="app">{{ message }}</div>
+    <div id="app">
+      <p v-if="message.length % 2 === 0">Even: {{ message }}</p>
+      <p v-else>Odd: {{ message }}</p>
+    </div>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <script>
       const { createApp } = Vue
