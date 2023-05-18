@@ -9,6 +9,10 @@
   <body>
     <h1>Hello! Frontend Masters - Vue.js</h1>
     <div id="app">
+      <h1>Counter</h1>
+      <p>{{ count }}</p>
+      <button v-on:click="incrementCount">Increment Count</button>
+      <hr />
       <p v-if="message.length % 2 === 0">Even: {{ message.toUpperCase() }}</p>
       <p v-else>Odd: {{ message }}</p>
       <ul v-for="item in listOfNumbers">
@@ -19,6 +23,7 @@
           </ul>
         </li>
       </ul>
+      <hr />
     </div>
 
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
@@ -28,6 +33,7 @@
       const app = createApp({
         data() {
           return {
+            count: 10,
             message: 'Hello it works',
             listOfNumbers: [
               {
@@ -56,6 +62,11 @@
                 list: [1, 2, 3]
               }
             ]
+          }
+        },
+        methods: {
+          incrementCount() {
+            this.count++
           }
         }
       })
