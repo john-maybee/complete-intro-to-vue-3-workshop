@@ -10,9 +10,19 @@
     <h1>Hello! Frontend Masters - Vue.js</h1>
     <div id="app">
       <h1>Counter</h1>
-      <p>{{ count }}</p>
+      <p :data-increment-by="incrementAmount">{{ count }}</p>
       <button v-on:click="incrementCount">Increment Count</button>
+      <!-- could just do @click="incrementCount" -->
+      <h4>{{ incrementAmount }}</h4>
+      <div>
+        <label for="incrementAmount">Increment by:</label>
+        <input 
+          type="number" 
+          v-model="incrementAmount"
+        />
+      </div>
       <hr />
+
       <p v-if="message.length % 2 === 0">Even: {{ message.toUpperCase() }}</p>
       <p v-else>Odd: {{ message }}</p>
       <ul v-for="item in listOfNumbers">
@@ -34,6 +44,7 @@
         data() {
           return {
             count: 10,
+            incrementAmount: 3,
             message: 'Hello it works',
             listOfNumbers: [
               {
@@ -65,8 +76,11 @@
           }
         },
         methods: {
+          changeIncrementAmount(event){
+            this.incrementAmount = event.target.value
+          },
           incrementCount() {
-            this.count++
+            this.count += this.incrementAmount 
           }
         }
       })

@@ -14,10 +14,25 @@
       <p v-if="characterList.length === 0">There are no characters</p>
       <ul v-else-if="characterList.length % 2 === 0">
         <li v-for="character in characterList">
-          {{ character.name }}
+          <p>{{ character.name }}</p>
+          <button @click="favoriteCharacter(character)">🔥 Favorite</button>
         </li>
       </ul>
       <p v-else>There are an odd number of characters</p>
+      <h3>Favorite Characters</h3>
+      <ul v-if="favoriteList.length > 0">
+        <li v-for="character in favoriteList">
+          {{ character.name }}
+        </li>
+      </ul>
+      <p v-else>There are no favorite characters!</p>
+      <h3>New Character</h3>
+      <pre>
+        {{ newCharacter }}
+      </pre>
+      <label for="character-name">Name</label>
+      <input type="text" v-model="newCharacter.name"
+      @keyup.enter="addNewCharacter" />
     </div>
     
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
@@ -25,6 +40,9 @@
       Vue.createApp({
         data: () => ({
           message: 'Arrested Development',
+          newCharacter: {
+            name: ''
+          },
           characterList: [
             {
               name: 'Michael Bluth',
@@ -56,8 +74,20 @@
             {
               name: 'Ann Veal',
             }
-          ]
-        })
+          ],
+          favoriteList: []
+        }),
+        methods: {
+          addNewCharacter() {
+            this.characterList.push(this.newCharacter)
+            this.newCharacter = {
+              name: ''
+            }
+          },
+          favoriteCharacter(character) {
+            this.favoriteList.push(character)
+          }
+        }
       }).mount('#app')
     </script>
   </body>
