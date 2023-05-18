@@ -4,52 +4,59 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vue 3 Practice</title>
+    <title>Favorite TV Show - Vue 3 Practice</title>
   </head>
   <body>
     <h1>Favorite TV Show</h1>
     <div id="app">
-      <p v-if="message.length % 2 === 0">{{ message.toUpperCase() }}</p>
-      <p v-else>{{ message }}</p>
-      <ul v-for="item in listOfCharacters">
-        <li>
-          {{ item.name }}
-          <ul>
-            <li v-for="character in item.list">{{ character }}</li>
-          </ul>
+      <h2>{{ message }}</h2>
+      <h3>Characters:</h3>
+      <p v-if="characterList.length === 0">There are no characters</p>
+      <ul v-else>
+        <li v-for="character in characterList">
+          {{ character.name }}
         </li>
       </ul>
     </div>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <script>
-      const { createApp } = Vue
-
-      const app = createApp({
-        data() {
-          return {
-            message: 'Arrested Development',
-            listOfCharacters: [
-              {
-                name: 'List of Characters',
-                id: '6a887cd2-f0bf-4321-b192-92016f82a883',
-                list: [
-                  'Michael Bluth', 
-                  'George Michael Bluth', 
-                  'Lindsay Bluth Fünke', 
-                  'Buster Bluth', 
-                  'George Oscar Bluth II', 
-                  'Lucille Bluth', 
-                  'Maeby Fünke', 
-                  'Tobias Fünke', 
-                  'Gob Bluth'
-                ]
-              }
-            ]
-          }
-        }
-      })
-
-      app.mount('#app')
+      Vue.createApp({
+        data: () => ({
+          message: 'Arrested Development',
+          characterList: [
+            {
+              name: 'Michael Bluth',
+            },
+            {
+              name: 'George Michael Bluth',
+            },
+            {
+              name: 'Lindsay Bluth Fünke',
+            },
+            {
+              name: 'Tobias Fünke',
+            },
+            {
+              name: 'George Oscar "G.O.B." Bluth II',
+            },
+            {
+              name: 'Buster Bluth',
+            },
+            {
+              name: 'Maeby Fünke',
+            },
+            {
+              name: 'Lucille Bluth',
+            },
+            {
+              name: 'George Bluth Sr.',
+            },
+            {
+              name: 'Ann Veal',
+            }
+          ]
+        })
+      }).mount('#app')
     </script>
   </body>
 </html>
