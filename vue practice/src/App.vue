@@ -1,5 +1,10 @@
 <script>
+import BaseCounter from './components/BaseCounter.vue'
+
 export default {
+  components: {
+    BaseCounter,
+  },
   data() {
           return {
             count: 10,
@@ -35,66 +40,34 @@ export default {
             ]
           }
         },
-        computed: {
-          displayTitle() {
-            if (this.count > 20) {
-              return 'Counter Standard - Very Long'
-            } else {
-              return 'Counter Standard'
-            }
-          },
-          optimizedIncrementAmount() {
-            return this.displayTitle.length * this.incrementAmount
-          }
-        },
-        methods: {
-          // changeIncrementAmount(event){
-          //   this.incrementAmount = event.target.value
-          // },
-          incrementCount(newAmount, event) {
-            console.log(newAmount)
-            console.log(event)
-            this.count += this.optimizedIncrementAmount 
-          }
-        },
-        watch: {
-          count(newValue) {
-            // console.log(newValue)
-            if (newValue > 20) {
-              this.counterTitle += ' Very Long'
-            }
-          }
-        }
+      
+        
+        // watch: {
+        //   count(newValue) {
+        //     // console.log(newValue)
+        //     if (newValue > 20) {
+        //       this.counterTitle += ' Very Long'
+        //     }
+        //   }
+        // }
 }
 </script>
 
 <template>
-  <h1>{{ displayTitle }}</h1>
-      <p :data-increment-by="incrementAmount">{{ count }}</p>
-      <button v-on:click="incrementCount">Increment Count</button>
-      <!-- could just do @click="incrementCount" -->
-      <h4>{{ incrementAmount }}</h4>
-      <p>{{ optimizedIncrementAmount }}</p>
-      <div>
-        <label for="incrementAmount">Increment by:</label>
-        <input 
-          type="number" 
-          v-model="incrementAmount"
-        />
-      </div>
-      <hr />
+  <BaseCounter />
+  <hr />
 
-      <p v-if="message.length % 2 === 0">Even: {{ message.toUpperCase() }}</p>
-      <p v-else>Odd: {{ message }}</p>
-      <ul v-for="(item, index) in listOfNumbers" :key="`item-${index}`">
-        <li>
-          {{ item.id }}
-          <ul>
-            <li v-for="number in item.list" :key="`number-${index}`">{{ number }}</li>
-          </ul>
-        </li>
+  <p v-if="message.length % 2 === 0">Even: {{ message.toUpperCase() }}</p>
+  <p v-else>Odd: {{ message }}</p>
+  <ul v-for="(item, index) in listOfNumbers" :key="`item-${index}`">
+    <li>
+      {{ item.id }}
+      <ul>
+        <li v-for="number in item.list" :key="`number-${index}`">{{ number }}</li>
       </ul>
-      <hr />
+    </li>
+  </ul>
+  <hr />
 </template>
 
 <style scoped>
