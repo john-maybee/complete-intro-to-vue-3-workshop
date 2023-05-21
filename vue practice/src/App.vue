@@ -2,12 +2,14 @@
 import BaseCounter from './components/BaseCounter.vue';
 import UserCard from './components/user-card.vue';
 import BaseButton from './components/base-button.vue';
+import BaseLayout from './components/base-layout.vue';
 
 export default {
   components: {
     BaseCounter,
     UserCard,
     BaseButton,
+    BaseLayout,
   },
   data() {
           return {
@@ -69,13 +71,22 @@ export default {
 </script>
 
 <template>
-  <BaseButton>
+  <BaseLayout>
+    <template v-slot:sidebar>
+      Aside
+    </template>
+    <template v-slot:main>
+      <UserCard :user="userData" @change-name="changeName" />
+    </template>
+    <template v-slot:footer>
+      <BaseCounter />
+    </template>
+  </BaseLayout>
+  <BaseButton :left="true">
     <!-- {{ userData.name }} -->
     <!-- Arrow Left - Hi! (Can enter writing in here to override the text that is within the slot in the base-button component) -->
   </BaseButton>
   <UserCard :user="userData" @change-name="changeName" />
-  <hr />
-  <BaseCounter />
   <hr />
 
   <p v-if="message.length % 2 === 0">Even: {{ message.toUpperCase() }}</p>
