@@ -48,7 +48,12 @@ export default {
             }
           }
         },
-      
+        methods: {
+          changeName() {
+            this.userData.name = "Charlie";
+          },
+        }
+        
         
         // watch: {
         //   count(newValue) {
@@ -58,11 +63,11 @@ export default {
         //     }
         //   }
         // }
-}
+};
 </script>
 
 <template>
-  <UserCard :user="userData" />
+  <UserCard :user="userData" @change-name="changeName" />
   <BaseCounter />
   <hr />
 
