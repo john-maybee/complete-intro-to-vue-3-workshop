@@ -1,11 +1,13 @@
 <script>
 import BaseCounter from './components/BaseCounter.vue';
 import UserCard from './components/user-card.vue';
+import BaseButton from './components/base-button.vue';
 
 export default {
   components: {
     BaseCounter,
     UserCard,
+    BaseButton,
   },
   data() {
           return {
@@ -67,7 +69,12 @@ export default {
 </script>
 
 <template>
+  <BaseButton>
+    <!-- {{ userData.name }} -->
+    <!-- Arrow Left - Hi! (Can enter writing in here to override the text that is within the slot in the base-button component) -->
+  </BaseButton>
   <UserCard :user="userData" @change-name="changeName" />
+  <hr />
   <BaseCounter />
   <hr />
 
