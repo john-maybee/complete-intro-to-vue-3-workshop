@@ -1,15 +1,27 @@
 <script>
 // https://pokeapi.co/api/v2/pokemon?limit=151
+import { computed, ref, reactive } from 'vue';
 
 export default {
   async setup() {
-    const regionName = 'Kanto';
+    const regionName = ref('Kanto');
+
+    const state = reactive({
+      elementType: 'lightning',
+    });
+
+    console.log(state);
+
+    const elementTypeAllCaps = computed(() => {
+      return state.elementType.toUpperCase();
+    });
     
     const pokedex = await fetch('https://pokeapi.co/api/v2/pokemon?limit=151')
       .then(response => response.json());
     return {
-      pokedex,
-      regionName,
+        pokedex,
+        regionName,
+        elementTypeAllCaps,
     };
   },
   data: () => ({
@@ -25,6 +37,16 @@ export default {
   //   console.log('beforeCreate')
   //   console.log(this.pokedex)
   // },
+  computed: {
+    regionNameLowerCase() {
+      return this.regionName.toLowerCase();
+    }
+  },
+  methods: {
+    changeRegionName() {
+      this.regionName = 'Hoenn';
+    }
+  },
   created() {
     // this.fetchPokemon();
 
@@ -35,8 +57,11 @@ export default {
 </script>
 
 <template>
-
-        <pre>{{ pokedex }}</pre>
+    <h2>{{ regionName }}</h2>
+    <h3>{{ elementTypeAllCaps }}</h3>
+    <h3>{{ regionNameLowerCase }}</h3>
+    <button @click="changeRegionName">Change Region Name</button>
+    <pre>{{ pokedex }}</pre>
 
     
 </template>
