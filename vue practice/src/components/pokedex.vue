@@ -1,73 +1,85 @@
-<script>
-// https://pokeapi.co/api/v2/pokemon?limit=151
-import { computed, ref, reactive } from 'vue';
+<script setup>
+import BaseButton from './base-button.vue';
+import { computed, defineProps, defineEmits, ref, reactive } from 'vue';
 
-export default {
-  async setup() {
-    const regionName = ref('Kanto');
+const emits = defineEmits(['change-region']);
 
-    const state = reactive({
-      elementType: 'lightning',
-    });
+const props = defineProps({
+    region: {
+        type: String,
+    },
+});
 
-    console.log(state);
+const regionName = ref('Kanto');
 
-    const elementTypeAllCaps = computed(() => {
-      return state.elementType.toUpperCase();
-    });
-    
-    const pokedex = await fetch('https://pokeapi.co/api/v2/pokemon?limit=151')
-      .then(response => response.json());
+const state = reactive({
+    elementType: 'lightning',
+});
 
-    const changeRegionName = () => {
-      regionName.value = 'Hoenn';
-    };
+console.log(state);
 
-    return {
-        changeRegionName,
-        pokedex,
-        regionName,
-        elementTypeAllCaps,
-    };
-  },
-  data: () => ({
-    pokedex: [1, 2, 3],
-  }),
-  // methods: {
-  //   async fetchPokemon() {
-  //     this.pokedex = await fetch('https://pokeapi.co/api/v2/pokemon?limit=151')
-  //     .then(response => response.json());
-  //   }
-  // },
-  // beforeCreate() {
-  //   console.log('beforeCreate')
-  //   console.log(this.pokedex)
-  // },
-//   computed: {
-//     regionNameLowerCase() {
-//       return this.regionName.toLowerCase();
-//     }
-//   },
-//   methods: {
-//     changeRegionName() {
-//       this.regionName = 'Hoenn';
-//     }
-//   },
-//   created() {
-//     // this.fetchPokemon();
+const elementTypeAllCaps = computed(() => {
+    return state.elementType.toUpperCase() + props.region;
+});
 
-//     console.log(this.regionName);
-//     console.log(this.pokedex);
-//   },
-}
+const pokedex = await fetch('https://pokeapi.co/api/v2/pokemon?limit=151')
+    .then(response => response.json());
+
+const changeRegionName = () => {
+    regionName.value = 'Hoenn';
+    emits('change-region');
+};
 </script>
 
 <template>
     <h2>{{ regionName }}</h2>
+    <BaseButton />
     <h3>{{ elementTypeAllCaps }}</h3>
-    <!-- <h3>{{ regionNameLowerCase }}</h3> -->
     <button @click="changeRegionName">Change Region Name</button>
     <pre>{{ pokedex }}</pre>
-
-    
 </template>
+
+ <!-- <h3>{{ regionNameLowerCase }}</h3> -->
+ <!-- // export default {
+    //   async setup() { -->
+<!-- // methods: {
+    //   async fetchPokemon() {
+    //     this.pokedex = await fetch('https://pokeapi.co/api/v2/pokemon?limit=151')
+    //     .then(response => response.json());
+    //   }
+    // },
+    // beforeCreate() {
+    //   console.log('beforeCreate')
+    //   console.log(this.pokedex)
+    // },
+  //   computed: {
+  //     regionNameLowerCase() {
+  //       return this.regionName.toLowerCase();
+  //     }
+  //   },
+  //   methods: {
+  //     changeRegionName() {
+  //       this.regionName = 'Hoenn';
+  //     }
+  //   },
+  //   created() {
+  //     // this.fetchPokemon();
+  
+  //     console.log(this.regionName);
+  //     console.log(this.pokedex);
+  //   }, -->
+
+  <!-- // return {
+    //     changeRegionName,
+    //     pokedex,
+    //     regionName,
+    //     elementTypeAllCaps,
+    // };
+//   }, -->
+<!-- // } -->
+
+<!-- data: () => ({
+    pokedex: [1, 2, 3],
+    }), -->
+
+  <!-- // https://pokeapi.co/api/v2/pokemon?limit=151 -->
