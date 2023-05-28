@@ -1,12 +1,26 @@
-<script>
-import Pokedex from './components/pokedex.vue';
+<script setup>
+import BaseCounter from './components/base-counter.vue';
+import UserCard from './components/user-card.vue';
+</script>
 
-export default {
+<template>
+  <BaseCounter />
+  <UserCard :user="{ name: 'Ben', food: 'Ramen' }" />
+</template>
+
+
+
+<!-- <style></style> -->
+
+
+<!-- script -->
+<!-- // // https://pokeapi.co/api/v2/pokemon?limit=151
+
+  export default {
   components: {
     Pokedex,
   },
 }
-// // https://pokeapi.co/api/v2/pokemon?limit=151
 
 // export default {
 //   async setup() {
@@ -38,18 +52,15 @@ export default {
 //     console.log(this.regionName);
 //     console.log(this.pokedex);
 //   },
-// }
-</script>
+// } -->
 
-<template>
-  <h1>New App</h1>
+<!-- template -->
+<!-- <pre>{{ pokedex }}</pre>
+  <button @click="fetchPokemon">Fetch Pokemon</button> -->
+  <!-- <h1>New App</h1>
   <Suspense>
     <Pokedex region="Hoenn" />
 
     <template v-slot:fallback> Loading Pokedex data... </template>
-  </Suspense>
-  <!-- <pre>{{ pokedex }}</pre>
-  <button @click="fetchPokemon">Fetch Pokemon</button> -->
-</template>
-
-<style></style>
+  </Suspense> -->
+  
