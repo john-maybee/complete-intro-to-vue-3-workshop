@@ -21,11 +21,11 @@ export default {
     <h1>User: {{ user.name }}</h1>
     <h2>New Count: {{ newCount }}</h2>
     <p>Favorite Food: {{ user.favoriteFood }}</p>
-    <button @click="$emit('change-name')">Change Name</button>
+    <button :class="$style.button" @click="$emit('change-name')">Change Name</button>
 </template>
 
-<style scoped>
-button {
+<style module>
+.button {
     border: 3px solid red;
 }
 </style>
