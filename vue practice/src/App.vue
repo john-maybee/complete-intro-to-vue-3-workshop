@@ -9,8 +9,15 @@ import UserCard from './components/user-card.vue';
 </template>
 
 
+<style>
+html{
+  background-color: papayawhip;
+}
 
-<!-- <style></style> -->
+button {
+  border: 3px solid green;
+}
+</style>
 
 
 <!-- script -->
