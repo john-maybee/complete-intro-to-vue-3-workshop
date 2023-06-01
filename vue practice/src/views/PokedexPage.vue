@@ -1,5 +1,15 @@
 <script setup>
-import BaseButton from './base-button.vue';
+
+</script>
+
+<template>
+    <h1>Pokedex</h1>
+</template>
+
+<style></style>
+
+<!-- <script setup>
+import BaseButton from '../components/base-button.vue';
 import { computed, defineProps, defineEmits, ref, reactive } from 'vue';
 
 const emits = defineEmits(['change-region']);
@@ -37,7 +47,7 @@ const changeRegionName = () => {
     <h3>{{ elementTypeAllCaps }}</h3>
     <button @click="changeRegionName">Change Region Name</button>
     <pre>{{ pokedex }}</pre>
-</template>
+</template> -->
 
  <!-- <h3>{{ regionNameLowerCase }}</h3> -->
  <!-- // export default {
